@@ -5,30 +5,52 @@ import Draft from "draft-js";
 
 const { RichUtils } = Draft;
 
+function Button({ activeClassName, children, isEnabled, onMouseDown }) {
+  return <button
+    className={isEnabled === true ? activeClassName : ""}
+    onMouseDown={onMouseDown}
+  >
+    {children}
+  </button>;
+}
+
+Button.propTypes = {
+  activeClassName: PropTypes.string.isRequired,
+  isEnabled: PropTypes.bool.isRequired,
+  onMouseDown: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
 const defaultProps = {
-  renderButton: ({ children, inlineStyle, isEnabled, onMouseDown }) => (
-    <button
-      className={isEnabled === true ? "djs-button-active" : ""}
-      onMouseDown={onMouseDown}
-    >
-      {children}
-    </button>
-  )
+  renderButton: Button,
+  activeClassName: 'active'
 };
 
 class InlineEntityButton extends PureComponent {
   render() {
-    const { renderButton, children, editorState, entityName } = this.props;
+    const { activeClassName, renderButton, children, editorState, entityName } = this.props;
 
     const isEnabled = Utils.hasEntity(editorState, entityName);
 
     return renderButton({
+      activeClassName,
       onMouseDown: this.props.onClick,
       children,
       isEnabled
     });
   }
 }
+
+InlineEntityButton.defaultProps = defaultProps;
+
+InlineEntityButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  editorState: PropTypes.object.isRequired,
+  activeClassName: PropTypes.string.isRequired,
+  entityName: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  renderButton: PropTypes.func,
+};
 
 class BlockButton extends PureComponent {
   onChange = ev => {
@@ -40,17 +62,29 @@ class BlockButton extends PureComponent {
   };
 
   render() {
-    const { renderButton, children, editorState, blockType } = this.props;
+    const { renderButton, activeClassName, children, editorState, blockType } = this.props;
 
     const isEnabled = RichUtils.getCurrentBlockType(editorState) === blockType;
 
     return renderButton({
+      activeClassName,
       onMouseDown: this.onChange,
       children,
       isEnabled
     });
   }
 }
+
+BlockButton.defaultProps = defaultProps;
+
+BlockButton.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  editorState: PropTypes.object.isRequired,
+  activeClassName: PropTypes.string.isRequired,
+  blockType: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  renderButton: PropTypes.func,
+};
 
 class InlineStyleButton extends PureComponent {
   onChange = ev => {
@@ -66,7 +100,7 @@ class InlineStyleButton extends PureComponent {
   render() {
     const {
       editorState,
-      blockType,
+      activeClassName,
       inlineStyle,
       children,
       renderButton
@@ -75,6 +109,7 @@ class InlineStyleButton extends PureComponent {
     const isEnabled = editorState.getCurrentInlineStyle().has(inlineStyle);
 
     return renderButton({
+      activeClassName,
       onMouseDown: this.onChange,
       children,
       isEnabled
@@ -83,7 +118,14 @@ class InlineStyleButton extends PureComponent {
 }
 
 InlineStyleButton.defaultProps = defaultProps;
-BlockButton.defaultProps = defaultProps;
-InlineEntityButton.defaultProps = defaultProps;
+
+InlineStyleButton.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  editorState: PropTypes.object.isRequired,
+  activeClassName: PropTypes.string.isRequired,
+  inlineStyle: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  renderButton: PropTypes.func,
+};
 
 export { InlineStyleButton, BlockButton, InlineEntityButton };

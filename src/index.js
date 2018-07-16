@@ -34,7 +34,7 @@ const Popover = styled(_Popover)`
   border-radius: 5px;
   color: #fff;
 
-  button, index {
+  button, input {
     color: #fff;
     background: none;
     padding: .7em .8em;
@@ -46,10 +46,14 @@ const Popover = styled(_Popover)`
   button {
     cursor: pointer;
   }
+
+  button.active {
+    background: #7B16FF;
+  }
 `;
 
 const ActiveButton = styled.button`
-  background: #7B16FF;
+  background: #7B16FF !important;
 `;
 
 const LinkModal = onClickOutside(

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { EditorState, DefaultDraftBlockRenderMap } from "draft-js";
-import Editor from "draft-js-plugins-editor";
+import { Editor, EditorState, DefaultDraftBlockRenderMap } from "draft-js";
 import Popover from "react-text-selection-popover";
 import createAnchorPlugin from "draft-js-anchor-plugin";
 import {
@@ -23,7 +22,6 @@ class App extends Component {
   };
 
   onChange = editorState => {
-    console.log("on xchange");
     this.setState({
       editorState
     });
@@ -61,7 +59,7 @@ class App extends Component {
           blockRenderMap={DefaultDraftBlockRenderMap.merge(blockRenderMap)}
           ref={el => {
             this.editorRef = {
-              current: el != null ? el.editor.editor : null
+              current: el != null ? el.editor : null
             };
           }}
           plugins={plugins}

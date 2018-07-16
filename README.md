@@ -1,13 +1,13 @@
-# react-text-selection-popover
+# spectrum-draft-js-inline-toolbar
 
-> 
+Spectrums inline toolbar for rich text editors based on draft js
 
 [![NPM](https://img.shields.io/npm/v/react-text-selection-popover.svg)](https://www.npmjs.com/package/react-text-selection-popover) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save react-text-selection-popover
+npm install --save spectrum-draft-js-inline-toolbar
 ```
 
 ## Usage
@@ -15,12 +15,16 @@ npm install --save react-text-selection-popover
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-text-selection-popover'
+import InlineToolbar from 'spectrum-draft-js-inline-toolbar'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <InlineToolbar
+        onChange={(editorState) => this.setState({ editorState })}
+        editorState={this.state.editorState}
+        selectionRef={{ current: this.editorRef }}
+      />
     )
   }
 }
