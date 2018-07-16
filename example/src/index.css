@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+.public-DraftEditor-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1.5em;
+  text-align: left;
+  padding: 2em;
+}
+
+.popover-style {
+  max-height: 100px;
+  overflow: auto;
+  background: #000;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.popover-style button, input {
+  color: #fff;
+  background: none;
+  padding: .7em .8em;
+  border: none;
+  font-size: inherit;
+  outline: none;
+}
+
+.popover-style button {
+  cursor: pointer;
+}
+
+.link-modal {
+  display: flex;
+  align-items: center;
+}
+
+.link-modal input{
+  width: auto;
+}
+
+.popover-style .djs-button-active{
+  background: #7B16FF;
+}
+
