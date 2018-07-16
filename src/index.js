@@ -90,7 +90,7 @@ const LinkModal = onClickOutside(
             onChange={this.props.onChange}
             value={this.props.value}
           />
-          <button onClick={this.props.onRemove}>x</button>
+          <button onClick={this.props.onRemove}>&#10005;</button>
         </LinkPopoverContent>
       );
     }
