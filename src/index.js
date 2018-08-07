@@ -28,7 +28,7 @@ const Popover = styled(_Popover)`
   max-height: 100px;
   overflow: auto;
   background: #000;
-  z-index: 1;
+  z-index: 999;
   display: flex;
   align-items: center;
   border-radius: 5px;
@@ -176,7 +176,6 @@ class InlineToolbar extends PureComponent {
         <Popover
           selectionRef={this.props.selectionRef}
           isOpen={!isCollapsed && !isLinkModalOpen}
-          defaultDirection="above"
         >
           <InlineStyleButton
             inlineStyle="BOLD"
@@ -239,7 +238,6 @@ class InlineToolbar extends PureComponent {
         <Popover
           isOpen={isLinkModalOpen}
           selectionRef={this.props.selectionRef}
-          defaultDirection="above"
         >
           <LinkModal
             onChange={this.onChangeLinkText}
