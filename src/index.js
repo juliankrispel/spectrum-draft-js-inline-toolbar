@@ -174,6 +174,7 @@ class InlineToolbar extends PureComponent {
     return (
       <div>
         <Popover
+          className={this.props.className}
           selectionRef={this.props.selectionRef}
           isOpen={!isCollapsed && !isLinkModalOpen}
         >
@@ -236,6 +237,7 @@ class InlineToolbar extends PureComponent {
           </BlockButton>
         </Popover>
         <Popover
+          className={this.props.className}
           isOpen={isLinkModalOpen}
           selectionRef={this.props.selectionRef}
         >
@@ -254,6 +256,7 @@ class InlineToolbar extends PureComponent {
 
 InlineToolbar.propTypes = {
   editorState: PropTypes.object.isRequired,
+  className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   selectionRef: PropTypes.shape({
     current: PropTypes.instanceOf(Element)
