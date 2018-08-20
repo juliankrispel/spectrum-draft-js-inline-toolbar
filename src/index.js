@@ -148,15 +148,18 @@ class InlineToolbar extends PureComponent {
 
   onSubmitLink = () => {
     const { currentLink } = this.state;
+
+    if (currentLink != null && currentLink.trim().length > 0) {
+      this.onChange(
+        Utils.collapseToEnd(
+          Utils.createLinkAtSelection(this.props.editorState, currentLink)
+        )
+      );
+    }
+
     this.setState({
       isLinkModalOpen: false
     });
-
-    this.onChange(
-      Utils.collapseToEnd(
-        Utils.createLinkAtSelection(this.props.editorState, currentLink)
-      )
-    );
   };
 
   render() {

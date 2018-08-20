@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Editor, EditorState, DefaultDraftBlockRenderMap } from "draft-js";
-import Popover from "react-text-selection-popover";
+import { EditorState, DefaultDraftBlockRenderMap } from "draft-js";
+import Editor from 'draft-js-plugins-editor';
 import createAnchorPlugin from "draft-js-anchor-plugin";
 import {
   blockRenderMap,
@@ -59,7 +59,7 @@ class App extends Component {
           blockRenderMap={DefaultDraftBlockRenderMap.merge(blockRenderMap)}
           ref={el => {
             this.editorRef = {
-              current: el != null ? el.editor : null
+              current: el != null ? el.editor.editor : null
             };
           }}
           plugins={plugins}

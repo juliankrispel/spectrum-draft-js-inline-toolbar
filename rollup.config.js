@@ -29,6 +29,7 @@ export default {
       exclude: 'node_modules/**'
     }),
     resolve(),
-    commonjs()
-  ]
+    commonjs(),
+  ],
+  external: ['draft-js', 'draft-js-plugins-utils', 'prop-types', 'react-onclickoutside', 'react-text-selection-popover']
 }
