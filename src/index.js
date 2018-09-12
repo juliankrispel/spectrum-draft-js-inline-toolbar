@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { InlineStyleButton, InlineEntityButton, BlockButton } from "./Button";
-import _Popover from "react-text-selection-popover";
+import Popover from "react-text-selection-popover";
 import Utils from "draft-js-plugins-utils";
 import onClickOutside from "react-onclickoutside";
 import PropTypes from "prop-types";
@@ -24,11 +24,11 @@ const LinkPopoverContent = styled.div`
   }
 `;
 
-const Popover = styled(_Popover)`
+const PopoverContainer = styled.div`
   max-height: 100px;
   overflow: auto;
   background: #000;
-  z-index: 999;
+  z-index: 9999999999;
   display: flex;
   align-items: center;
   border-radius: 5px;
@@ -181,6 +181,7 @@ class InlineToolbar extends PureComponent {
           selectionRef={this.props.selectionRef}
           isOpen={!isCollapsed && !isLinkModalOpen}
         >
+        <PopoverContainer>
           <InlineStyleButton
             inlineStyle="BOLD"
             onChange={this.onChange}
@@ -238,12 +239,14 @@ class InlineToolbar extends PureComponent {
           >
             <H2Icon />
           </BlockButton>
+        </PopoverContainer>
         </Popover>
         <Popover
           className={this.props.className}
           isOpen={isLinkModalOpen}
           selectionRef={this.props.selectionRef}
         >
+        <PopoverContainer>
           <LinkModal
             onChange={this.onChangeLinkText}
             onRemove={this.onRemoveLink}
@@ -251,6 +254,7 @@ class InlineToolbar extends PureComponent {
             onClickOutside={this.onSubmitLink}
             value={currentLink}
           />
+        </PopoverContainer>
         </Popover>
       </div>
     );
