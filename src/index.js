@@ -6,6 +6,7 @@ import onClickOutside from "react-onclickoutside";
 import PropTypes from "prop-types";
 import { CHECKABLE_LIST_ITEM } from "draft-js-checkable-list-item";
 import styled from "styled-components";
+import EventListener from "react-event-listener";
 
 import BoldIcon from "./BoldIcon";
 import ListIcon from "./ListIcon";
@@ -100,7 +101,8 @@ const LinkModal = onClickOutside(
 class InlineToolbar extends PureComponent {
   state = {
     isLinkModalOpen: false,
-    currentLink: null
+    currentLink: null,
+    isFocused: false
   };
 
   onChangeLinkText = ev =>
@@ -162,6 +164,15 @@ class InlineToolbar extends PureComponent {
     });
   };
 
+  setIsFocused = () => {
+    const selection = window.getSelection();
+
+    this.setState({ isFocused: this.props.selectionRef.current
+      && this.props.selectionRef.current.contains(selection.anchorNode)
+      && this.props.selectionRef.current.contains(selection.focusNode)
+    });
+  };
+
   render() {
     const isCollapsed = this.props.editorState.getSelection().isCollapsed();
 
@@ -174,12 +185,18 @@ class InlineToolbar extends PureComponent {
         ? this.state.currentLink
         : this.getCurrentLink();
 
+    const { isFocused } = this.state;
+
     return (
       <div>
+        <EventListener
+          target={document}
+          onSelectionChange={this.setIsFocused}
+        />
         <Popover
           className={this.props.className}
           selectionRef={this.props.selectionRef}
-          isOpen={!isCollapsed && !isLinkModalOpen}
+          isOpen={!isCollapsed && !isLinkModalOpen && isFocused}
         >
         <PopoverContainer>
           <InlineStyleButton
