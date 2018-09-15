@@ -4,13 +4,11 @@ import Popover from "react-text-selection-popover";
 import Utils from "draft-js-plugins-utils";
 import onClickOutside from "react-onclickoutside";
 import PropTypes from "prop-types";
-import { CHECKABLE_LIST_ITEM } from "draft-js-checkable-list-item";
 import styled from "styled-components";
 import EventListener from "react-event-listener";
 
 import BoldIcon from "./BoldIcon";
 import ListIcon from "./ListIcon";
-import CheckIcon from "./CheckIcon";
 import H1Icon from "./H1Icon";
 import H2Icon from "./H2Icon";
 import CodeIcon from "./CodeIcon";
@@ -227,13 +225,6 @@ class InlineToolbar extends PureComponent {
           >
             <LinkIcon />
           </InlineEntityButton>
-          <BlockButton
-            blockType={CHECKABLE_LIST_ITEM}
-            onChange={this.onChange}
-            editorState={this.props.editorState}
-          >
-            <CheckIcon />
-          </BlockButton>
           <BlockButton
             blockType="unordered-list-item"
             onChange={this.onChange}

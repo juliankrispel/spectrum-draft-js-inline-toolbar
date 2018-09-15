@@ -1,6 +1,6 @@
 {
   "name": "spectrum-draft-js-inline-toolbar",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Spectrums inline toolbar for draft js editors",
   "author": "juliankrispel",
   "license": "MIT",
@@ -35,7 +35,6 @@
     "react-text-selection-popover": "^1.1.0"
   },
   "peerDependencies": {
-    "draft-js-checkable-list-item": "^3.0.3",
     "prop-types": "^15.5.4",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
